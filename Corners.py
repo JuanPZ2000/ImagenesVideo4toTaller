@@ -53,14 +53,13 @@ def DetectCorners(image, bw_edges):
 
     for m in range(len(pendiente)):
         for n in range(m+1,len(pendiente)):
-            if pendiente[m] != pendiente[n]:
-                if ((pendiente[m] - pendiente[n]) != 0) and (corte[n] - corte[m] != 0):
-                    x = (corte[n] - corte[m]) / (pendiente[m] - pendiente[n])
-                    y = (pendiente[m] * x) + corte[m]
-                    if (valorMedio_ <= x <= valorMedio) and (valorMedio_ <= y <= valorMedio):
-                        x_vertice.append(np.int_(x+valorMedio))
-                        y_vertice.append(np.int_(y+valorMedio))
-                        cv2.circle(image_draw, (x_vertice[-1],y_vertice[-1]), 10, (0, 233, 255), 2)
+            if ((pendiente[m] - pendiente[n]) != 0) and (corte[n] - corte[m] != 0):
+                x = (corte[n] - corte[m]) / (pendiente[m] - pendiente[n])
+                y = (pendiente[m] * x) + corte[m]
+                if (valorMedio_ <= x <= valorMedio) and (valorMedio_ <= y <= valorMedio):
+                    x_vertice.append(np.int_(x+valorMedio))
+                    y_vertice.append(np.int_(y+valorMedio))
+                    cv2.circle(image_draw, (x_vertice[-1],y_vertice[-1]), 10, (0, 233, 255), 2)
     coordenadas = []
     for i in range(len(pendiente)):
         coordenadas.append([x_vertice[i],y_vertice[i]])
