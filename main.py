@@ -8,8 +8,10 @@ if __name__ == '__main__':
     xd = Quadrilateral(500)
 
     xd2 = xd.generate()
-    cv2.imshow("uwu",xd2)
+    cv2.imshow("imagen generada",xd2)
     high_thresh = 300
     bw_edges = cv2.Canny(xd2, high_thresh*0.3, high_thresh, L2gradient=True)
-    Cn.DetectCorners(xd2, bw_edges)
+    imagenFinal, coordenadas =Cn.DetectCorners(xd2, bw_edges)
+    print("Las coordenadas de los bordes encontrados fueron x,y:",coordenadas)
+    cv2.imshow('Imagen con bordes', imagenFinal)
     cv2.waitKey(0)
